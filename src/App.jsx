@@ -6,6 +6,10 @@ import { Github, Linkedin, Mail, ExternalLink, Instagram } from 'lucide-react'
 import { motion } from 'framer-motion'
 import './App.css'
 
+// Importar novos componentes
+import ProjectSummaryCard from './components/ui/project-summary-card.jsx'
+import ProjectDetailModal from './components/ui/project-detail-modal.jsx'
+
 // Importar imagens
 import profileImage from './assets/Rodrigo_Motti.jpg'
 import ticketGeneratorImage from './assets/ticket-generator.png'
@@ -14,6 +18,8 @@ import omniNewsImage from './assets/omni-news.png'
 
 function App() {
   const [activeSection, setActiveSection] = useState('hero')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   // Scroll spy para navegação
   useEffect(() => {
@@ -44,6 +50,16 @@ function App() {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+  }
+
+  const openProjectModal = (project) => {
+    setSelectedProject(project)
+    setIsModalOpen(true)
+  }
+
+  const closeProjectModal = () => {
+    setIsModalOpen(false)
+    setSelectedProject(null)
   }
 
   const projects = [
@@ -243,7 +259,7 @@ function App() {
             </p>
           </motion.div>
 
-          <div className="grid gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
                 key={index}
@@ -252,62 +268,15 @@ function App() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Card className="overflow-hidden">
-                  <div className="grid lg:grid-cols-2 gap-6">
-                    <div className="relative">
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-64 lg:h-full object-cover"
-                      />
-                      {project.inDevelopment && (
-                        <Badge className="absolute top-4 left-4">Em Desenvolvimento</Badge>
-                      )}
-                    </div>
-                    <div className="p-6">
-                      <CardHeader className="p-0 mb-4">
-                        <CardTitle className="text-2xl mb-2">{project.title}</CardTitle>
-                        <CardDescription className="text-base">{project.description}</CardDescription>
-                      </CardHeader>
-                      <CardContent className="p-0 space-y-4">
-                        <div>
-                          <h4 className="font-semibold mb-2">O Desafio:</h4>
-                          <p className="text-sm text-muted-foreground">{project.challenge}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-2">A Solução:</h4>
-                          <p className="text-sm text-muted-foreground">{project.solution}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-2">Resultados:</h4>
-                          <p className="text-sm text-muted-foreground">{project.results}</p>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold mb-2">Tecnologias:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.map((tech) => (
-                              <Badge key={tech} variant="secondary">{tech}</Badge>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="flex gap-3 pt-4">
-                          <Button asChild>
-                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                              <ExternalLink className="h-4 w-4 mr-2" />
-                              Ver Projeto
-                            </a>
-                          </Button>
-                          <Button variant="outline" asChild>
-                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                              <Github className="h-4 w-4 mr-2" />
-                              Código
-                            </a>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </div>
-                  </div>
-                </Card>
+                <ProjectSummaryCard 
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  technologies={project.technologies}
+                  githubUrl={project.githubUrl}
+                  liveUrl={project.liveUrl}
+                  onClick={() => openProjectModal(project)}
+                />
               </motion.div>
             ))}
           </div>
@@ -504,6 +473,13 @@ function App() {
           </p>
         </div>
       </footer>
+
+      {/* Project Detail Modal */}
+      <ProjectDetailModal 
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={closeProjectModal}
+      />
     </div>
   )
 }
