@@ -12,8 +12,8 @@ import ProjectDetailModal from './components/ui/project-detail-modal.jsx'
 
 // Importar imagens
 import profileImage from './assets/Rodrigo_Motti.jpg'
-import ticketGeneratorImage from './assets/ticket-generator.png'
-import ageCalculatorImage from './assets/age-calculator.png'
+import careerHubImage from './assets/career-hub.png'
+import finsyncImage from './assets/Finsync.png'
 import omniNewsImage from './assets/omni-news.png'
 
 function App() {
@@ -64,25 +64,25 @@ function App() {
 
   const projects = [
     {
-      title: "Gerador de Tickets Personalizado",
-      description: "Ferramenta web para gerar tickets personalizados com dados do usuário e design profissional",
-      challenge: "Criar uma ferramenta web que permitisse gerar tickets personalizados de forma rápida e intuitiva, com dados do usuário e design profissional.",
-      solution: "Desenvolvi uma aplicação web utilizando HTML5, CSS3 e JavaScript vanilla, implementando funcionalidades de captura de dados, geração dinâmica de conteúdo e download de tickets em formato de imagem.",
+      title: "Hub de Modo Carreira FC25",
+      description: "Uma interface web moderna e intuitiva para gerenciar dados de elencos, temporadas, estatísticas e transferências em um modo carreira no FC25, jogo de futebol. O sistema ainda está estático, ccom dados teste, Api em desenvolvimento",
+      challenge: "Criar um hub que permita o usuário gerenciar dados de seu time, estatísticas, transferências e dados históricos de seus saves, buscando uma imersão cada vez maior no game.",
+      solution: "Desenvolvi uma aplicação web utilizando React.js e Tailwind CSS, com uma interface intuitiva que permite personalizar e visualizar dados de forma dinâmica, guardando histórico.",
       results: "Interface intuitiva que permite personalização completa dos tickets, com validação de dados em tempo real e geração instantânea. Aprendi sobre manipulação de Canvas API e otimização de performance para aplicações client-side.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Canvas API"],
-      image: ticketGeneratorImage,
-      liveUrl: "https://ticket-generator-plum.vercel.app/",
-      githubUrl: "#"
+      technologies: ["React.js", "HTML5", "Tailwind CSS"],
+      image: careerHubImage,
+      liveUrl: "https://career-mode-hub.vercel.app/",
+      githubUrl: "https://github.com/rmotti/career-mode-hub"
     },
     {
-      title: "Calculadora de Idade Precisa",
-      description: "Calculadora que determina idade exata em anos, meses e dias, considerando anos bissextos",
-      challenge: "Desenvolver uma calculadora que determinasse a idade exata em anos, meses e dias, considerando anos bissextos e diferentes durações de meses.",
-      solution: "Implementei algoritmos precisos de cálculo temporal usando JavaScript, com validação robusta de datas e interface responsiva que funciona em todos os dispositivos.",
-      results: "Ferramenta 100% precisa que considera todas as variações do calendário gregoriano. Interface limpa e acessível que demonstra atenção aos detalhes na experiência do usuário.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
-      image: ageCalculatorImage,
-      liveUrl: "https://age-calculator-green-xi.vercel.app/",
+      title: "Gerenciador de Finanças",
+      description: "Sistema de gerenciamento de finanças pessoais autenticado, com dashboard de transações, categorias e relatórios",
+      challenge: "Desenvolver um sistema que integre todas as suas transações financeiras e possibilite gerar visões por setor e por data.",
+      solution: "Implementei uma aplicação fullstack com React.js no frontend e Node.js/Express no backend, utilizando MongoDB para persistência de dados. A aplicação possui autenticação JWT, dashboard interativo e relatórios dinâmicos.",
+      results: "Ferramenta funcional com login autenticado e que possibilita o usuário gerenciar todas as suas transações financeiras.",
+      technologies: ["React.js", "HTML5", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
+      image: finsyncImage,
+      liveUrl: "https://finsync-frontend-three.vercel.app/",
       githubUrl: "#"
     },
     {
@@ -91,7 +91,7 @@ function App() {
       challenge: "Criar uma plataforma completa de notícias com categorização, integração de APIs externas para cotações de criptomoedas e sistema automatizado de e-mails.",
       solution: "Estou desenvolvendo uma aplicação web responsiva com arquitetura modular, integrando APIs de notícias e criptomoedas, implementando sistema de notificações por e-mail e painel administrativo.",
       results: "Plataforma completa que demonstra habilidades fullstack, desde o frontend responsivo até integrações complexas de backend e automações.",
-      technologies: ["HTML5", "CSS3", "JavaScript", "APIs REST", "Sistema de E-mails"],
+      technologies: ["Next.js", "HTML5", "Tailwind CSS", "Node.js", "Express", "MongoDB"],
       image: omniNewsImage,
       liveUrl: "https://omni-news.vercel.app/",
       githubUrl: "#",
@@ -104,13 +104,13 @@ function App() {
       title: "Desenvolvedor I",
       company: "CIMATEC",
       period: "Janeiro de 2025 - Presente",
-      description: "Atuo na área de Sistemas Especialistas desenvolvendo projetos de P&D como FullStack, utilizando PowerApps para criar soluções empresariais robustas. Paralelamente, lidero o desenvolvimento de um projeto interno para as gerências de Sistemas Especialistas e BigData/IA, aplicando metodologias ágeis e boas práticas de desenvolvimento."
+      description: "Atuo como Desenvolvedor I na área de software como desenvolvedor fullstack. Atuei na parte do banco de dados em projeto com mulinacional, participando desde os levantamentos de requisitos até a modelagem, desenvolvimento da base de ddos e criação de procedures que futuramente serviram como base para fluxos auomatizados, utilizando Power Automate"
     },
     {
       title: "Pesquisador Voluntário",
       company: "CIMATEC",
       period: "Março 2024 - Presente",
-      description: "Conduzo pesquisa aplicada em duas frentes inovadoras: gamificação do ensino de banco de dados (focando em consultas DQL) e desenvolvimento de soluções de digital twin com manutenção preditiva na Planta de Manufatura Avançada. Essas experiências me proporcionaram visão estratégica sobre como a tecnologia pode revolucionar processos educacionais e industriais."
+      description: "Conduzo pesquisa aplicada na gamificação no ensino de banco de dados, buscando validar metodologias e melhora no ensino da área em questão."
     },
     {
       title: "Estagiário em Desenvolvimento de Software",
@@ -121,10 +121,11 @@ function App() {
   ]
 
   const skills = {
-    "Linguagens de Programação": ["Python", "JavaScript", "C", "Java", "SQL"],
-    "Frameworks e Ferramentas": ["PowerApps", "HTML5/CSS3", "React", "Node.js", "Git/GitHub"],
-    "Metodologias": ["Scrum", "Gestão de P&D", "Metodologias Ágeis"],
-    "Áreas de Interesse": ["Desenvolvimento FullStack", "P&D", "Gamificação", "Digital Twin", "IoT"]
+    "Frontend": ["React.js", "Next", "Tailwind CSS"],
+    "Backend": ["Node.js", "Express"],
+    "Databases": ["SQL", "mySql", "MongoDB"],
+    "Ferramentas/Metodologias": ["Scrum","Git/GitHub"],
+    "Áreas de Interesse": ["Desenvolvimento FullStack", "Banco de Dados", "BigData", "AI"]
   }
 
   return (
