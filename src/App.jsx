@@ -12,7 +12,7 @@ import ProjectDetailModal from './components/ui/project-detail-modal.jsx'
 
 // Importar imagens
 import profileImage from './assets/Rodrigo_Motti.jpg'
-import careerHubImage from './assets/career-hub.png'
+import careerHubImage from './assets/Career-hub.png'
 import finsyncImage from './assets/Finsync.png'
 import omniNewsImage from './assets/omni-news.png'
 
