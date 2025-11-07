@@ -8,7 +8,7 @@ const getGridLayout = (count) => {
   return 'md:grid-cols-2 lg:grid-cols-4'
 }
 
-export default function ContactSection({ contactMethods }) {
+export default function ContactSection({ contactMethods, copy }) {
   const gridLayout = getGridLayout(contactMethods.length)
 
   return (
@@ -20,11 +20,8 @@ export default function ContactSection({ contactMethods }) {
           viewport={{ once: true }}
           className="text-center"
         >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Vamos Construir Algo Incrível Juntos?</h2>
-          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Estou sempre aberto a novas oportunidades e colaborações. Entre em contato para discutirmos como posso
-            contribuir com seu projeto.
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{copy.title}</h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">{copy.subtitle}</p>
 
           <div className={`grid gap-6 ${gridLayout}`}>
             {contactMethods.map(({ id, icon: Icon, label, href, text }) => {

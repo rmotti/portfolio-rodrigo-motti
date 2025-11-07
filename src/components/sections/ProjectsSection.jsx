@@ -7,22 +7,15 @@ const getGridLayout = (count) => {
   return 'md:grid-cols-2 lg:grid-cols-3'
 }
 
-export default function ProjectsSection({ projects, onProjectSelect }) {
+export default function ProjectsSection({ projects, onProjectSelect, copy }) {
   const gridLayout = getGridLayout(projects.length)
 
   return (
     <section id="projects" className="py-16 px-4 bg-muted/30">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Projetos em Destaque</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Cada projeto representa um desafio superado e uma oportunidade de aprendizado
-          </p>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{copy.title}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{copy.subtitle}</p>
         </motion.div>
 
         <div className={`grid gap-8 ${gridLayout}`}>

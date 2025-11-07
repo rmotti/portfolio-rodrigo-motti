@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 
-export default function AboutSection({ experiences, skills, education, languages }) {
+export default function AboutSection({ experiences, skills, education, languages, copy }) {
   return (
     <section id="about" className="py-16 px-4">
       <div className="container mx-auto max-w-6xl">
@@ -20,7 +20,7 @@ export default function AboutSection({ experiences, skills, education, languages
 
         <div className="grid lg:grid-cols-2 gap-12">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <h4 className="text-xl font-semibold mb-4">Habilidades Técnicas</h4>
+            <h4 className="text-xl font-semibold mb-4">{copy.skillsTitle}</h4>
             <div className="space-y-4 mb-8">
               {Object.entries(skills).map(([category, items]) => (
                 <div key={category}>
@@ -36,7 +36,7 @@ export default function AboutSection({ experiences, skills, education, languages
               ))}
             </div>
 
-            <h4 className="text-xl font-semibold mb-4">Formação</h4>
+            <h4 className="text-xl font-semibold mb-4">{copy.educationTitle}</h4>
             <div className="space-y-3 mb-8">
               {education.map((item) => (
                 <div key={item.course}>
@@ -48,7 +48,7 @@ export default function AboutSection({ experiences, skills, education, languages
               ))}
             </div>
 
-            <h4 className="text-xl font-semibold mb-4">Idiomas</h4>
+            <h4 className="text-xl font-semibold mb-4">{copy.languagesTitle}</h4>
             <div className="grid grid-cols-2 gap-3">
               {languages.map(({ language, level, badgeVariant }) => (
                 <div className="flex justify-between" key={language}>
@@ -60,7 +60,7 @@ export default function AboutSection({ experiences, skills, education, languages
           </motion.div>
 
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-            <h3 className="text-2xl font-bold mb-6">Experiência Profissional</h3>
+            <h3 className="text-2xl font-bold mb-6">{copy.experienceTitle}</h3>
             <div className="space-y-6 mb-8">
               {experiences.map((exp) => (
                 <Card key={exp.title}>

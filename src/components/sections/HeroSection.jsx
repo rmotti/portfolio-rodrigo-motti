@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button.jsx'
 import SocialLinks from '@/components/shared/SocialLinks.jsx'
 
 export default function HeroSection({ content, socialLinks, onNavigate }) {
-  const { name, role, tagline, description, profileImage, highlightEmoji } = content
+  const { name, role, tagline, description, profileImage, highlightEmoji, primaryCta, secondaryCta } = content
 
   return (
     <section id="hero" className="pt-20 pb-16 px-4">
@@ -25,10 +25,10 @@ export default function HeroSection({ content, socialLinks, onNavigate }) {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Button onClick={() => onNavigate('projects')} size="lg">
-                Ver Projetos
+                {primaryCta}
               </Button>
               <Button variant="outline" onClick={() => onNavigate('about')} size="lg">
-                Conheça Minha Trajetória
+                {secondaryCta}
               </Button>
             </div>
           </motion.div>
