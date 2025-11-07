@@ -185,16 +185,11 @@ export const contentByLanguage = {
         text: 'Ver Código',
         href: 'https://github.com/rmotti',
         icon: Github
-      },
-      {
-        id: 'instagram',
-        label: 'Instagram',
-        text: 'Seguir',
-        href: 'https://instagram.com/rmotti_',
-        icon: Instagram
       }
     ],
     aboutCopy: {
+      sectionTitle: 'Sobre Mim',
+      sectionSubtitle: 'Minha jornada na tecnologia e como cheguei até aqui',
       skillsTitle: 'Habilidades Técnicas',
       educationTitle: 'Formação',
       languagesTitle: 'Idiomas',
@@ -343,16 +338,11 @@ export const contentByLanguage = {
         text: 'See Code',
         href: 'https://github.com/rmotti',
         icon: Github
-      },
-      {
-        id: 'instagram',
-        label: 'Instagram',
-        text: 'Follow',
-        href: 'https://instagram.com/rmotti_',
-        icon: Instagram
       }
     ],
     aboutCopy: {
+      sectionTitle: 'About Me',
+      sectionSubtitle: 'My path in technology and how I got here',
       skillsTitle: 'Technical Skills',
       educationTitle: 'Education',
       languagesTitle: 'Languages',

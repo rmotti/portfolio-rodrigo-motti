@@ -12,7 +12,7 @@ export default function ContactSection({ contactMethods, copy }) {
   const gridLayout = getGridLayout(contactMethods.length)
 
   return (
-    <section id="contact" className="py-16 px-4 bg-muted/30">
+    <section id="contact" className="py-16 px-4">
       <div className="container mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

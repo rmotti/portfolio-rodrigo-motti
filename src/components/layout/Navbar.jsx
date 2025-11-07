@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import LanguageToggle from '@/components/shared/LanguageToggle.jsx'
+import ThemeToggle from '@/components/shared/ThemeToggle.jsx'
 
 export default function Navbar({ brandName, navLinks, activeSection, onNavigate }) {
   return (
@@ -14,7 +15,7 @@ export default function Navbar({ brandName, navLinks, activeSection, onNavigate 
             {brandName}
           </motion.div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
             <div className="hidden md:flex space-x-6">
               {navLinks.map((item) => (
                 <button
@@ -28,6 +29,7 @@ export default function Navbar({ brandName, navLinks, activeSection, onNavigate 
                 </button>
               ))}
             </div>
+            <ThemeToggle />
             <LanguageToggle />
           </div>
         </div>

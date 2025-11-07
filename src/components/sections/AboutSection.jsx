@@ -6,16 +6,9 @@ export default function AboutSection({ experiences, skills, education, languages
   return (
     <section id="about" className="py-16 px-4">
       <div className="container mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">Sobre Mim</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Minha jornada na tecnologia e como cheguei até aqui
-          </p>
+        <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-12">
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4">{copy.sectionTitle}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{copy.sectionSubtitle}</p>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12">
