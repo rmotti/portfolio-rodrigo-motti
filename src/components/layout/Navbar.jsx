@@ -10,9 +10,9 @@ export default function Navbar({ brandName, navLinks, activeSection, onNavigate 
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-xl font-bold"
+            className="text-xs font-mono uppercase tracking-widest text-primary"
           >
-            {brandName}
+            rm
           </motion.div>
 
           <div className="flex items-center gap-2">

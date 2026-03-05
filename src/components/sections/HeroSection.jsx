@@ -3,52 +3,64 @@ import { Button } from '@/components/ui/button.jsx'
 import SocialLinks from '@/components/shared/SocialLinks.jsx'
 
 export default function HeroSection({ content, socialLinks, onNavigate }) {
-  const { name, role, tagline, description, profileImage, highlightEmoji, primaryCta, secondaryCta } = content
+  const { name, role, tagline, description, primaryCta, secondaryCta } = content
+
+  const techStack = description.split(' · ').filter(Boolean)
 
   return (
-    <section id="hero" className="pt-20 pb-16 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
+    <section id="hero" className="pt-28 pb-20 px-4">
+      <div className="container mx-auto max-w-4xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-sm text-muted-foreground font-mono mb-3">{name}</p>
+
+          <h1 className="text-3xl lg:text-5xl font-bold leading-tight mb-6">
+            {role}
+          </h1>
+
+          <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+            {tagline}
+          </p>
+
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-1 text-center lg:text-left"
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-wrap gap-2 justify-center mb-12"
           >
-            <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-              {name}
-              <span className="block text-2xl lg:text-3xl text-primary mt-2">{role}</span>
-            </h1>
-
-            <p className="text-xl text-muted-foreground mb-6 max-w-2xl">{tagline}</p>
-            <p className="text-lg mb-8 max-w-2xl">{description}</p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button onClick={() => onNavigate('projects')} size="lg">
-                {primaryCta}
-              </Button>
-              <Button variant="outline" onClick={() => onNavigate('about')} size="lg">
-                {secondaryCta}
-              </Button>
-            </div>
+            {techStack.map((tech) => (
+              <span
+                key={tech}
+                className="text-xs font-mono px-3 py-1.5 rounded-md bg-primary/10 text-primary border border-primary/25 hover:bg-primary/20 transition-colors"
+              >
+                {tech}
+              </span>
+            ))}
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex-shrink-0"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-3 justify-center mb-12"
           >
-            <div className="relative">
-              <img src={profileImage} alt={name} className="w-80 h-80 object-cover rounded-full shadow-2xl" />
-              <div className="absolute -bottom-4 -right-4 bg-primary text-primary-foreground p-4 rounded-full">
-                <span className="text-2xl">{highlightEmoji}</span>
-              </div>
-            </div>
+            <Button onClick={() => onNavigate('projects')} size="lg">
+              {primaryCta}
+            </Button>
+            <Button variant="outline" onClick={() => onNavigate('about')} size="lg">
+              {secondaryCta}
+            </Button>
           </motion.div>
-        </div>
+        </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <SocialLinks links={socialLinks} />
         </motion.div>
       </div>

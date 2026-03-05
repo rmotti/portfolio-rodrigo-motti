@@ -41,7 +41,19 @@ const sharedProjectMeta = {
     liveUrl: null,
     livePreviewDisabled: true
   },
-  expressApi: {
+  welnessHubApi: {
+    image: backendPlaceholder,
+    githubUrl: 'https://github.com/rmotti/welness_hub_backend',
+    liveUrl: 'https://welness-hub-backend.vercel.app/',
+    livePreviewDisabled: false
+  },
+    welnesshub: {
+    image: backendPlaceholder,
+    githubUrl: 'https://github.com/rmotti/wellness_hub_frontend',
+    liveUrl: 'https://wellness-hub-frontend-one.vercel.app/',
+    livePreviewDisabled: false
+  },
+    expressApi: {
     image: backendPlaceholder,
     githubUrl: 'https://github.com/rmotti/express-backend-example',
     liveUrl: null,
@@ -59,9 +71,9 @@ export const contentByLanguage = {
     ],
     hero: {
       name: 'Rodrigo Motti',
-      role: 'Desenvolvedor FullStack',
-      tagline: 'Construindo soluções digitais que conectam tecnologia e pessoas',
-      description: 'Desenvolvedor Fullstack - FastAPI | React.js | SQL | TypeScript | Python | Node.js',
+      role: 'Desenvolvedor Backend & Engenharia de Dados',
+      tagline: 'Backend sólido, dados em escala e IA aplicada — com maturidade para decisões de arquitetura',
+      description: 'Node.js · Python · Azure · SQL · Docker · n8n · AI Agents',
       profileImage,
       highlightEmoji: '👨‍💻',
       primaryCta: 'Ver Projetos',
@@ -70,7 +82,7 @@ export const contentByLanguage = {
     socialLinks,
     projectsSection: {
       title: 'Projetos em Destaque',
-      subtitle: 'Cada projeto representa um desafio superado e uma oportunidade de aprendizado'
+      subtitle: 'Confira Abaixo os Projetos Desenvolvidos por Mim'
     },
     projects: [
       {
@@ -97,55 +109,83 @@ export const contentByLanguage = {
       },
       {
         ...sharedProjectMeta.expressApi,
-        title: 'Exemplo de API Express',
+        title: 'Template de API Express',
         description: 'API de demonstração utilizando Express.js',
         challenge: 'Definir um backend seguro e pronto para CRUD completo de usuários e transações.',
         solution:
           'Criei uma API com Express.js, MongoDB e Mongoose, aplicando JWT e Bcrypt para autenticação robusta.',
         results: 'Demonstra boas práticas de autenticação e persistência em um backend Node.js enxuto.',
         technologies: ['Express.js', 'MongoDB', 'JWT', 'Bcrypt']
+      },
+      {
+        ...sharedProjectMeta.welnesshub,
+        title: 'WellnessHub - Frontend',
+        description: 'Interface para Gestão de Alunos de Personal Trainer',
+        challenge: 'Criar uma interface intuitiva e simples para personais trainer gerirem seus alunos.',
+        solution:
+          'Desenvolvi o frontend com React.js, garantindo uma experiência fluida e acessível em diversos dispositivos.',
+        results: 'Interface amigável que facilita a navegação e o engajamento dos usuários com os conteúdos de bem-estar.',
+        technologies: ['React.tsx', 'TypeScript', 'Vite']
+      },
+      {
+        ...sharedProjectMeta.welnessHubApi,
+        title: 'WellnessHub - Backend',
+        description: 'API para plataforma de bem-estar',
+        challenge: 'Desenvolver uma API para gerenciar alunos, treinos e exercícios.',
+        solution:
+          'Implementei a API com Node.js, utilizando PostgreSQL, hospedado no Neon para persistência e JWT para autenticação segura.',
+        results: 'API eficiente que suporta as funcionalidades essenciais da plataforma de bem-estar.',
+        technologies: ['Node.js', 'PostgreSQL', 'JWT']
       }
+
     ],
     experiences: [
       {
-        title: 'Desenvolvedor Júnior',
-        company: 'CIMATEC',
-        period: 'Janeiro de 2025 - Presente',
+        title: 'Engenheiro de Software | IA, Cloud & Dados',
+        company: 'SENAI CIMATEC',
+        period: 'Janeiro 2025 - Presente',
         description:
-          'Atuo criando agentes de IA na Azure usando PromptFlow. Também participei da modelagem de bases de dados e procedures em projetos com multinacionais.',
-        technologies: ['Power Automate', 'SQL', 'PL-SQL', 'Modelagem de Dados', 'Azure', 'Promptflow', 'Python', 'IA']
-      },
-      {
-        title: 'Estagiário em Desenvolvimento de Software',
-        company: 'CIMATEC',
-        period: 'Junho - Dezembro 2024',
-        description:
-          'Integrei a gerência de BigData/IA e Software, desenvolvendo com PowerApps e aprendendo sobre arquitetura de sistemas empresariais.',
-        technologies: ['PowerApps', 'Arquitetura de Sistemas', 'Scrum', 'Trabalho em Equipe']
+          'Atuação em dois projetos distintos com foco em soluções de IA, Cloud e Dados. Responsável pelo desenvolvimento de pipelines de dados no Azure Data Factory (ADF) para ingestão e transformação de dados do Cosmos DB e Blob Storage, criação de Data Flows para estruturação de dados complexos (JSON) para relatórios no Power BI, implementação de melhorias em Agentes de IA com OCR e leitura multimodal, desenvolvimento e arquitetura de API Node.js integrada ao WhatsApp, orquestração de automações com n8n e containerização com Docker.',
+        technologies: ['Azure Data Factory', 'Cosmos DB', 'Power BI', 'Node.js', 'n8n', 'Docker', 'Python', 'SQL', 'Git']
       },
       {
         title: 'Pesquisador Voluntário',
         company: 'CIMATEC',
-        period: 'Março 2024 - Presente',
+        period: 'Agosto 2024 - Presente',
         description:
-          'Conduzo pesquisa aplicada sobre gamificação no ensino de banco de dados, desenvolvendo soluções web para validação acadêmica.',
-        technologies: ['PostgreSQL', 'Node.js', 'Pesquisa Acadêmica', 'Banco de Dados']
+          'Projeto de pesquisa sobre gamificação no ensino de banco de dados, com foco em consultas DQL. Desenvolvo um sistema web que inclui modelagem de múltiplos bancos SQL, arquitetura do projeto, criação de modelos, povoamento e views.',
+        technologies: ['PostgreSQL', 'Node.js', 'SQL', 'Modelagem de Dados']
+      },
+      {
+        title: 'Estagiário em Desenvolvimento de Software',
+        company: 'CIMATEC',
+        period: 'Junho 2024 - Janeiro 2025',
+        description:
+          'Atuação no ciclo completo de desenvolvimento de ERP gerencial para as áreas de Big Data, IA e Software, com foco na automatização de processos de RH, Comercial e alocação de horas em projetos.',
+        technologies: ['PowerApps', 'Metodologias Ágeis', 'Scrum', 'Trabalho em Equipe']
+      },
+      {
+        title: 'Pesquisador',
+        company: 'CIMATEC',
+        period: 'Março 2024 - Julho 2024',
+        description:
+          'Projeto de pesquisa na Planta de Manufatura Avançada do CIMATEC, envolvendo digital twin e manutenção preditiva.',
+        technologies: ['Python', 'JavaScript', 'Digital Twin']
       }
     ],
     skills: {
       Linguagens: ['Python', 'TypeScript', 'JavaScript'],
-      Frontend: ['React', 'Next'],
-      Backend: ['FastAPI', 'Node.js', 'Express'],
-      Bancos: ['SQL', 'MySQL', 'MongoDB'],
-      Cloud: ['Azure'],
-      'Ferramentas/Metodologias': ['Scrum', 'Git/GitHub'],
-      'Áreas de Interesse': ['Desenvolvimento FullStack', 'Banco de Dados', 'Big Data', 'IA']
+      Frontend: ['React', 'Next.js'],
+      Backend: ['Node.js', 'FastAPI', 'Express'],
+      'Dados & Cloud': ['Azure Data Factory', 'Cosmos DB', 'Power BI', 'Azure', 'SQL', 'PostgreSQL', 'MongoDB'],
+      Ferramentas: ['Docker', 'n8n', 'Git/GitHub', 'Scrum'],
+      'Áreas de Interesse': ['Engenharia de Dados', 'Backend', 'Agentes de IA', 'Cloud']
     },
     education: [
       {
         course: 'Engenharia de Computação',
         institution: 'Universidade CIMATEC',
-        details: '2022-2026 • 8º semestre'
+        details: '2022-2026'
       },
       {
         course: 'Ensino de Inglês como Segundo Idioma',
@@ -214,9 +254,9 @@ export const contentByLanguage = {
     ],
     hero: {
       name: 'Rodrigo Motti',
-      role: 'Full-Stack Developer',
-      tagline: 'Building digital solutions that connect technology and people',
-      description: 'Fullstack developer - FastAPI | React.js | SQL | TypeScript | Python | Node.js',
+      role: 'Backend Developer & Data Engineering',
+      tagline: 'Solid backend, scalable data and applied AI — with the maturity to drive architecture decisions',
+      description: 'Node.js · Python · Azure · SQL · Docker · n8n · AI Agents',
       profileImage,
       highlightEmoji: '👨‍💻',
       primaryCta: 'See Projects',
@@ -250,55 +290,82 @@ export const contentByLanguage = {
       },
       {
         ...sharedProjectMeta.expressApi,
-        title: 'Express API Example',
+        title: 'Express API Template',
         description: 'Sample API built with Express.js',
         challenge: 'Design a backend ready for full CRUD operations with secure authentication.',
         solution:
           'Implemented an Express.js API using MongoDB and Mongoose with JWT + Bcrypt for robust auth flows.',
         results: 'Showcases best practices for authentication and persistence in a lean Node.js backend.',
         technologies: ['Express.js', 'MongoDB', 'JWT', 'Bcrypt']
+      },
+      {
+        ...sharedProjectMeta.welnesshub,
+        title: 'WellnessHub - Frontend',
+        description: 'Student Management Interface for Personal Trainers',
+        challenge: 'Create an intuitive interface for personal trainers to manage their students.',
+        solution:
+          'Built the frontend with React.js, delivering a smooth and accessible experience across devices.',
+        results: 'User-friendly interface that simplifies navigation and student engagement with wellness content.',
+        technologies: ['React.tsx', 'TypeScript', 'Vite']
+      },
+      {
+        ...sharedProjectMeta.welnessHubApi,
+        title: 'WellnessHub - Backend',
+        description: 'API for a wellness platform',
+        challenge: 'Develop an API to manage students, workouts and exercises.',
+        solution:
+          'Built the API with Node.js, using PostgreSQL hosted on Neon for persistence and JWT for secure authentication.',
+        results: 'Efficient API that supports the core features of the wellness platform.',
+        technologies: ['Node.js', 'PostgreSQL', 'JWT']
       }
     ],
     experiences: [
       {
-        title: 'Junior Developer',
-        company: 'CIMATEC',
+        title: 'Software Engineer | AI, Cloud & Data',
+        company: 'SENAI CIMATEC',
         period: 'January 2025 - Present',
         description:
-          'Build Azure Promptflow AI agents and previously modeled databases and procedures for multinational projects.',
-        technologies: ['Power Automate', 'SQL', 'PL-SQL', 'Data Modeling', 'Azure', 'Promptflow', 'Python', 'AI']
-      },
-      {
-        title: 'Software Development Intern',
-        company: 'CIMATEC',
-        period: 'June - December 2024',
-        description:
-          'Worked in the Big Data/AI and Software department using PowerApps while learning enterprise architecture practices.',
-        technologies: ['PowerApps', 'Systems Architecture', 'Scrum', 'Team Collaboration']
+          'Worked on two distinct projects focused on AI, Cloud, and Data solutions. Responsible for building data pipelines in Azure Data Factory (ADF) for ingestion and transformation from Cosmos DB and Blob Storage, creating Data Flows for complex JSON data structuring for Power BI reports, improving AI Agents with OCR and multimodal reading capabilities, developing and architecting a Node.js API integrated with WhatsApp, orchestrating automations with n8n, and containerizing the application with Docker.',
+        technologies: ['Azure Data Factory', 'Cosmos DB', 'Power BI', 'Node.js', 'n8n', 'Docker', 'Python', 'SQL', 'Git']
       },
       {
         title: 'Volunteer Researcher',
         company: 'CIMATEC',
-        period: 'March 2024 - Present',
+        period: 'August 2024 - Present',
         description:
-          'Conduct applied research on gamification for database education, building web solutions for academic validation.',
-        technologies: ['PostgreSQL', 'Node.js', 'Academic Research', 'Databases']
+          'Research project on gamification for database education, focusing on DQL queries. Developing a web system that includes multi-database SQL modeling, project architecture design, model creation, data seeding, and views.',
+        technologies: ['PostgreSQL', 'Node.js', 'SQL', 'Data Modeling']
+      },
+      {
+        title: 'Software Development Intern',
+        company: 'CIMATEC',
+        period: 'June 2024 - January 2025',
+        description:
+          'Worked across the full development cycle of a managerial ERP for Big Data, AI, and Software departments, focused on automating HR, Commercial, and project hour allocation processes.',
+        technologies: ['PowerApps', 'Agile Methodologies', 'Scrum', 'Team Collaboration']
+      },
+      {
+        title: 'Researcher',
+        company: 'CIMATEC',
+        period: 'March 2024 - July 2024',
+        description:
+          'Research project at the CIMATEC Advanced Manufacturing Plant, involving digital twin and predictive maintenance.',
+        technologies: ['Python', 'JavaScript', 'Digital Twin']
       }
     ],
     skills: {
       Languages: ['Python', 'TypeScript', 'JavaScript'],
-      Frontend: ['React', 'Next'],
-      Backend: ['FastAPI', 'Node.js', 'Express'],
-      Databases: ['SQL', 'MySQL', 'MongoDB'],
-      Cloud: ['Azure'],
-      'Tools/Methodologies': ['Scrum', 'Git/GitHub'],
-      'Areas of Interest': ['Full-Stack Development', 'Databases', 'Big Data', 'AI']
+      Frontend: ['React', 'Next.js'],
+      Backend: ['Node.js', 'FastAPI', 'Express'],
+      'Data & Cloud': ['Azure Data Factory', 'Cosmos DB', 'Power BI', 'Azure', 'SQL', 'PostgreSQL', 'MongoDB'],
+      Tools: ['Docker', 'n8n', 'Git/GitHub', 'Scrum'],
+      'Areas of Interest': ['Data Engineering', 'Backend', 'AI Agents', 'Cloud']
     },
     education: [
       {
         course: 'Computer Engineering',
-        institution: 'Universidade CIMATEC',
-        details: '2022-2026 • 8th semester'
+        institution: 'CIMATEC University',
+        details: '2022-2026'
       },
       {
         course: 'English as a Second Language',

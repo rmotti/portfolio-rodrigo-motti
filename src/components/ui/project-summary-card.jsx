@@ -1,5 +1,3 @@
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
 import { ExternalLink, Github } from 'lucide-react'
 
 const ProjectSummaryCard = ({
@@ -10,7 +8,7 @@ const ProjectSummaryCard = ({
   githubUrl,
   liveUrl,
   liveDisabled,
-  onClick // Adicionar prop onClick para abrir o modal
+  onClick
 }) => {
   const renderLiveButton = () => {
     if (!liveUrl && !liveDisabled) return null
@@ -19,12 +17,12 @@ const ProjectSummaryCard = ({
       return (
         <button
           type="button"
-          className="bg-white/40 text-gray-500 p-2 rounded-full cursor-not-allowed"
+          className="bg-black/60 backdrop-blur-sm p-2 rounded-full cursor-not-allowed border border-white/10"
           title="Preview indisponível"
           onClick={(e) => e.stopPropagation()}
           aria-disabled="true"
         >
-          <ExternalLink className="w-4 h-4" />
+          <ExternalLink className="w-4 h-4 text-white/30" />
         </button>
       )
     }
@@ -34,59 +32,62 @@ const ProjectSummaryCard = ({
         href={liveUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+        className="bg-black/60 backdrop-blur-sm p-2 rounded-full hover:bg-black/80 transition-colors border border-white/20"
         onClick={(e) => e.stopPropagation()}
       >
-        <ExternalLink className="w-4 h-4 text-gray-800" />
+        <ExternalLink className="w-4 h-4 text-white" />
       </a>
     )
   }
 
   return (
-    <Card
-      className="group relative overflow-hidden transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 cursor-pointer"
+    <div
+      className="group flex flex-col overflow-hidden rounded-xl border border-border bg-card cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-[0_8px_40px_-12px_hsl(var(--primary)/0.4)]"
       onClick={onClick}
     >
-      <div className="relative">
+      {/* Image */}
+      <div className="relative overflow-hidden">
         <img
           src={image}
           alt={title}
-          className="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+          className="w-full h-44 object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        {/* Overlay buttons - Visíveis apenas no hover */}
-        <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 to-transparent" />
+        <div className="absolute bottom-3 right-3 flex gap-2">
           {renderLiveButton()}
           {githubUrl && (
             <a
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white/90 backdrop-blur-sm p-2 rounded-full hover:bg-white transition-colors"
+              className="bg-black/60 backdrop-blur-sm p-2 rounded-full hover:bg-black/80 transition-colors border border-white/20"
               onClick={(e) => e.stopPropagation()}
             >
-              <Github className="w-4 h-4 text-gray-800" />
+              <Github className="w-4 h-4 text-white" />
             </a>
           )}
         </div>
       </div>
 
-      <CardContent className="p-6">
-        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{title}</h3>
-        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{description}</p>
-
-        <div className="flex flex-wrap gap-2">
+      {/* Content */}
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        <div className="flex flex-wrap gap-1.5">
           {technologies.map((tech, index) => (
-            <Badge key={index} variant="secondary" className="text-xs bg-primary/10 text-primary hover:bg-primary/20 transition-colors">
+            <span
+              key={index}
+              className="text-[11px] font-mono px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20"
+            >
               {tech}
-            </Badge>
+            </span>
           ))}
         </div>
-      </CardContent>
-    </Card>
+        <h3 className="text-base font-bold leading-snug group-hover:text-primary transition-colors duration-200">
+          {title}
+        </h3>
+        <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+      </div>
+    </div>
   )
 }
 
 export default ProjectSummaryCard
-
