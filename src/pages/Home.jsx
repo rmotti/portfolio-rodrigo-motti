@@ -34,7 +34,13 @@ export default function Home() {
     <div className="min-h-screen bg-background">
       <Navbar brandName={content.hero.name} navLinks={content.navLinks} activeSection={activeSection} onNavigate={handleNavigate} />
       <HeroSection content={content.hero} socialLinks={content.socialLinks} onNavigate={handleNavigate} />
-      <ProjectsSection projects={content.projects} onProjectSelect={openProjectModal} copy={content.projectsSection} />
+      <ProjectsSection
+        projects={content.projects}
+        featuredProject={content.featuredProject}
+        experiments={content.experiments}
+        onProjectSelect={openProjectModal}
+        copy={content.projectsSection}
+      />
       <AboutSection
         experiences={content.experiences}
         skills={content.skills}
@@ -43,13 +49,17 @@ export default function Home() {
         copy={content.aboutCopy}
       />
       <ContactSection contactMethods={content.contactMethods} copy={content.contactSection} />
-      <Footer text={content.footerText} />
+      <Footer copy={content.footerCopy} />
 
       <ProjectDetailModal
         project={selectedProject}
         isOpen={isModalOpen}
         onClose={closeProjectModal}
         labels={content.projectModalLabels}
+        partLabels={{
+          frontend: content.projectsSection.frontendLabel,
+          backend: content.projectsSection.backendLabel
+        }}
       />
     </div>
   )

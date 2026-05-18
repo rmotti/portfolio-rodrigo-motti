@@ -1,70 +1,165 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
-import { ExternalLink, Github } from 'lucide-react'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
+import { Button } from '@/components/ui/button.jsx'
+import { ExternalLink, Github, Lock } from 'lucide-react'
+import LivePreviewIframe from '@/components/shared/LivePreviewIframe.jsx'
 
-const ProjectDetailModal = ({ project, isOpen, onClose, labels }) => {
+function ProjectPart({ part, labels }) {
+  return (
+    <div className="space-y-4">
+      <div>
+        <div className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
+          {labels.technologiesTitle}
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {part.technologies.map((tech) => (
+            <span
+              key={tech}
+              className="text-[11px] font-mono px-2 py-0.5 rounded bg-muted/60 text-muted-foreground border border-border/50"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {part.liveUrl && !part.livePreviewDisabled ? (
+          <Button asChild className="bg-gradient-accent text-white border-0 hover:opacity-90">
+            <a href={part.liveUrl} target="_blank" rel="noopener noreferrer">
+              <ExternalLink className="mr-2 h-4 w-4" />
+              {labels.viewProject}
+            </a>
+          </Button>
+        ) : part.livePreviewDisabled ? (
+          <Button disabled variant="outline">
+            <Lock className="mr-2 h-4 w-4" />
+            {labels.previewUnavailable}
+          </Button>
+        ) : null}
+        {part.githubUrl ? (
+          <Button asChild variant="outline">
+            <a href={part.githubUrl} target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-4 w-4" />
+              {labels.viewCode}
+            </a>
+          </Button>
+        ) : null}
+      </div>
+    </div>
+  )
+}
+
+export default function ProjectDetailModal({ project, isOpen, onClose, labels, partLabels }) {
   if (!project) return null
+
+  const hasParts = Array.isArray(project.parts) && project.parts.length > 0
+  const technologies =
+    project.technologies ||
+    (hasParts ? Array.from(new Set(project.parts.flatMap((p) => p.technologies || []))) : [])
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle>{project.title}</DialogTitle>
-          <DialogDescription>{project.description}</DialogDescription>
-        </DialogHeader>
-        <div className="grid gap-4 py-4">
-          <img src={project.image} alt={project.title} className="w-full h-64 object-cover rounded-md mb-4" />
-          <div>
-            <h4 className="font-semibold mb-2">{labels.challengeTitle}:</h4>
-            <p className="text-sm text-muted-foreground">{project.challenge}</p>
+      <DialogContent className="sm:max-w-[760px] max-h-[90vh] overflow-y-auto p-0 gap-0">
+        {project.previewUrl ? (
+          <div className="relative h-[280px] sm:h-[380px] shrink-0 overflow-hidden rounded-t-lg bg-muted/40 border-b border-border">
+            <LivePreviewIframe
+              url={project.previewUrl}
+              title={`${project.name || project.title} live preview`}
+              interactive
+              fallback={
+                project.image ? (
+                  <img src={project.image} alt={project.name || project.title} className="w-full h-full object-cover" />
+                ) : null
+              }
+            />
           </div>
-          <div>
-            <h4 className="font-semibold mb-2">{labels.solutionTitle}:</h4>
-            <p className="text-sm text-muted-foreground">{project.solution}</p>
+        ) : project.image ? (
+          <div className="relative aspect-[21/9] overflow-hidden rounded-t-lg bg-muted/40">
+            <img src={project.image} alt={project.name || project.title} className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/20 to-transparent" />
           </div>
-          <div>
-            <h4 className="font-semibold mb-2">{labels.resultsTitle}:</h4>
-            <p className="text-sm text-muted-foreground">{project.results}</p>
+        ) : null}
+
+        <div className="p-6 sm:p-8">
+          <DialogHeader className="space-y-2 mb-6 text-left">
+            {project.tags?.length ? (
+              <div className="flex flex-wrap gap-1.5 mb-1">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full border border-border text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            <DialogTitle className="font-display text-2xl sm:text-3xl tracking-tight">
+              {project.name || project.title}
+            </DialogTitle>
+            {project.tagline ? <DialogDescription className="text-base">{project.tagline}</DialogDescription> : null}
+          </DialogHeader>
+
+          <div className="space-y-6 mb-8">
+            {project.problem ? (
+              <section>
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  {labels.problemTitle}
+                </h4>
+                <p className="text-sm leading-relaxed text-foreground/90">{project.problem}</p>
+              </section>
+            ) : null}
+            {project.decisions ? (
+              <section>
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  {labels.decisionsTitle}
+                </h4>
+                <p className="text-sm leading-relaxed text-foreground/90">{project.decisions}</p>
+              </section>
+            ) : null}
+            {project.results ? (
+              <section>
+                <h4 className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  {labels.resultsTitle}
+                </h4>
+                <p className="text-sm leading-relaxed text-foreground/90">{project.results}</p>
+              </section>
+            ) : null}
           </div>
-          <div>
-            <h4 className="font-semibold mb-2">{labels.technologiesTitle}:</h4>
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
-                <Badge key={tech} variant="secondary">
-                  {tech}
-                </Badge>
+
+          {hasParts ? (
+            <Tabs defaultValue={project.parts[0].kind} className="w-full">
+              <TabsList className="bg-card border border-border">
+                {project.parts.map((part) => (
+                  <TabsTrigger
+                    key={part.kind}
+                    value={part.kind}
+                    className="data-[state=active]:bg-gradient-accent data-[state=active]:text-white"
+                  >
+                    {partLabels?.[part.kind] || part.kind}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+              {project.parts.map((part) => (
+                <TabsContent key={part.kind} value={part.kind} className="mt-5">
+                  <ProjectPart part={part} labels={labels} />
+                </TabsContent>
               ))}
-            </div>
-          </div>
-          <div className="flex gap-3 pt-4">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-              >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                {labels.viewProject}
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2"
-              >
-                <Github className="h-4 w-4 mr-2" />
-                {labels.viewCode}
-              </a>
-            )}
-          </div>
+            </Tabs>
+          ) : technologies.length ? (
+            <ProjectPart
+              part={{
+                technologies,
+                githubUrl: project.githubUrl,
+                liveUrl: project.liveUrl,
+                livePreviewDisabled: project.livePreviewDisabled
+              }}
+              labels={labels}
+            />
+          ) : null}
         </div>
       </DialogContent>
     </Dialog>
   )
 }
-
-export default ProjectDetailModal
-
