@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Github, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Github, ChevronLeft, ChevronRight, Lock } from 'lucide-react'
 import ProjectFeaturedCard from '@/components/ui/project-featured-card.jsx'
 import ProjectSummaryCard from '@/components/ui/project-summary-card.jsx'
 import GradientText from '@/components/shared/GradientText.jsx'
@@ -8,6 +8,61 @@ import GradientText from '@/components/shared/GradientText.jsx'
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+}
+
+// Experimento sem `githubUrl` (repo privado ou inexistente) vira um card estático,
+// com selo no lugar do CTA — em vez de um link que levaria a um 404.
+function ExperimentRow({ experiment, copy }) {
+  const { title, description, technologies, githubUrl } = experiment
+  const hasLink = Boolean(githubUrl)
+
+  const content = (
+    <>
+      {hasLink ? (
+        <Github className="w-4 h-4 text-muted-foreground shrink-0" />
+      ) : (
+        <Lock className="w-4 h-4 text-muted-foreground shrink-0" />
+      )}
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium">{title}</p>
+        <p className="text-xs text-muted-foreground">{description}</p>
+      </div>
+      <div className="flex flex-wrap gap-1">
+        {technologies.map((t) => (
+          <span key={t} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted/60 border border-border/50 text-muted-foreground">
+            {t}
+          </span>
+        ))}
+      </div>
+      {hasLink ? (
+        <span className="text-xs font-mono text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
+          {copy.experimentsCta} →
+        </span>
+      ) : (
+        <span className="text-xs font-mono text-muted-foreground/70 whitespace-nowrap">
+          {copy.experimentsPrivate}
+        </span>
+      )}
+    </>
+  )
+
+  const baseClasses =
+    'flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border bg-card/40 px-4 py-3'
+
+  if (!hasLink) {
+    return <div className={baseClasses}>{content}</div>
+  }
+
+  return (
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group ${baseClasses} hover:border-foreground/30 transition-colors`}
+    >
+      {content}
+    </a>
+  )
 }
 
 export default function ProjectsSection({ projects, featuredProject, experiments, onProjectSelect, copy }) {
@@ -173,29 +228,7 @@ export default function ProjectsSection({ projects, featuredProject, experiments
             </div>
             <div className="space-y-2">
               {experiments.map((exp) => (
-                <a
-                  key={exp.title}
-                  href={exp.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-border bg-card/40 px-4 py-3 hover:border-foreground/30 transition-colors"
-                >
-                  <Github className="w-4 h-4 text-muted-foreground shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium">{exp.title}</p>
-                    <p className="text-xs text-muted-foreground">{exp.description}</p>
-                  </div>
-                  <div className="flex flex-wrap gap-1">
-                    {exp.technologies.map((t) => (
-                      <span key={t} className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-muted/60 border border-border/50 text-muted-foreground">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                  <span className="text-xs font-mono text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
-                    {copy.experimentsCta} →
-                  </span>
-                </a>
+                <ExperimentRow key={exp.title} experiment={exp} copy={copy} />
               ))}
             </div>
           </motion.div>

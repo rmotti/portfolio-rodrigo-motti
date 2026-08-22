@@ -44,6 +44,11 @@ function ProjectPart({ part, labels }) {
               {labels.viewCode}
             </a>
           </Button>
+        ) : part.codeUnavailable ? (
+          <Button disabled variant="outline">
+            <Lock className="mr-2 h-4 w-4" />
+            {labels.codeUnavailable}
+          </Button>
         ) : null}
       </div>
     </div>
@@ -153,7 +158,8 @@ export default function ProjectDetailModal({ project, isOpen, onClose, labels, p
                 technologies,
                 githubUrl: project.githubUrl,
                 liveUrl: project.liveUrl,
-                livePreviewDisabled: project.livePreviewDisabled
+                livePreviewDisabled: project.livePreviewDisabled,
+                codeUnavailable: project.codeUnavailable
               }}
               labels={labels}
             />
